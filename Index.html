@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabor & Chama - Cardápio Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><span class="logo-text">Sabor & Chama</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#cardapio">Cardápio</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                </ul>
+            </nav>
+            <div class="header-buttons">
+                <button id="login-btn" class="btn"><i class="fas fa-user"></i> Login</button>
+                <button id="cart-btn" class="btn"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="container">
+                <h2>Cardápio Online</h2>
+                <p>Sabores que acendem seus sentidos</p>
+                <a href="#cardapio" class="btn btn-primary">Ver Cardápio</a>
+            </div>
+        </section>
+
+        <section id="cardapio" class="menu-section">
+            <div class="container">
+                <h2>Nosso Cardápio</h2>
+                <div class="menu-categories">
+                    <button class="category-btn active" data-category="todos">Todos</button>
+                    <button class="category-btn" data-category="entradas">Entradas</button>
+                    <button class="category-btn" data-category="principais">Pratos Principais</button>
+                    <button class="category-btn" data-category="sobremesas">Sobremesas</button>
+                    <button class="category-btn" data-category="bebidas">Bebidas</button>
+                </div>
+
+                <div class="menu-items">
+                    <!-- Itens serão adicionados via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="about-section">
+            <div class="container">
+                <h2>Sobre Nós</h2>
+                <p>O Sabor & Chama traz uma experiência gastronômica única, com pratos que combinam tradição e inovação, sempre com ingredientes frescos e selecionados.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Sabor & Chama. Todos os direitos reservados.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Login -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+                <p>Não tem conta? <a href="#" id="show-signup">Cadastre-se</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Cadastro -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Cadastro</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Nome Completo</label>
+                    <input type="text" id="signup-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Senha</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-phone">Telefone</label>
+                    <input type="tel" id="signup-phone" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <p>Já tem conta? <a href="#" id="show-login">Faça login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal do Carrinho -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Seu Carrinho</h2>
+            <div id="cart-items">
+                <!-- Itens do carrinho serão adicionados aqui -->
+                <p class="empty-cart">Seu carrinho está vazio</p>
+            </div>
+            <div class="cart-total">
+                <p>Total: <span id="cart-total">R$ 0,00</span></p>
+            </div>
+            <button id="checkout-btn" class="btn btn-primary" disabled>Finalizar Pedido</button>
+        </div>
+    </div>
+
+    <!-- Modal de Checkout -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Finalizar Pedido</h2>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="delivery-address">Endereço de Entrega</label>
+                    <input type="text" id="delivery-address" required>
+                </div>
+                <div class="form-group">
+                    <label for="delivery-notes">Observações</label>
+                    <textarea id="delivery-notes" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Forma de Pagamento</label>
+                    <div class="payment-options">
+                        <label>
+                            <input type="radio" name="payment" value="dinheiro" checked> Dinheiro
+                        </label>
+                        <label>
+                            <input type="radio" name="payment" value="cartao"> Cartão (na entrega)
+                        </label>
+                        <label>
+                            <input type="radio" name="payment" value="pix"> PIX
+                        </label>
+                    </div>
+                </div>
+                <div class="order-summary">
+                    <h3>Resumo do Pedido</h3>
+                    <div id="order-items">
+                        <!-- Itens do pedido serão adicionados aqui -->
+                    </div>
+                    <p class="order-total">Total: <span id="order-total">R$ 0,00</span></p>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Pedido via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
